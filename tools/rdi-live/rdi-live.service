@@ -1,0 +1,17 @@
+[Unit]
+Description=RDI Live Display
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+#Type=forking
+User=root
+Restart=always
+RestartSec=1
+Environment=GOGC=500
+Environment=PORT=80
+Environment=MAX_NPR=100
+ExecStart=/usr/local/bin/rdi-live
+
+[Install]
+WantedBy=default.target

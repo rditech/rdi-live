@@ -1,0 +1,79 @@
+syntax = "proto3";
+package rdi.detmap;
+option go_package = "detmap";
+
+message Map {
+    // hps_config maps a 32-bit HPS configuration id number to a description of
+    // the configuration.  An HPS configuration is common to HPSs in the same
+    // slot in multiple detectors of the same design.
+    map<uint32, HpsConfig> hps_config = 1;
+    map<uint32, HpsCalibration> hps_calibration = 2;
+    map<uint32, DetectorConfig> det_config = 3;
+}
+
+message HpsConfig {
+    uint32 n_channels = 1;
+
+    message ChannelConfig {
+        uint32 axis = 1;
+        uint32 axis_channel = 2;
+
+        // list of pad coordinates connected to this channel
+        repeated float pad_x = 3;
+        repeated float pad_y = 4;
+    }
+    map<uint32, ChannelConfig> channel = 2;
+
+    float current_conv = 3;
+
+    enum Mode {
+        CURRENT = 0;
+        PULSED = 1;
+    }
+    Mode mode = 4;
+
+    uint32 det_config = 5;
+}
+
+message HpsCalibration {
+    repeated float current_conv = 1;
+}
+
+message DetectorConfig {
+    string name = 1;
+
+    message ImageConfig {
+        message Geometry {
+            uint32 n = 1;
+            uint32 m = 2;
+            float pitch = 3;
+            float x_offset = 4;
+            float y_offset = 5;
+        }
+        repeated Geometry geometry = 1;
+
+        message ChannelDesc {
+            uint32 hps = 1;
+            uint32 chan = 2;
+        }
+        repeated ChannelDesc channel_list = 2;
+
+        message MatrixRow {
+            repeated float array = 1;
+        }
+        repeated MatrixRow g = 3;
+        repeated MatrixRow lin_est_t = 4;
+        repeated float x_pos = 5;
+        repeated float y_pos = 6;
+        
+        enum Convolution {
+            NONE = 0;
+            DIFFUSION = 1;
+        }
+        Convolution conv = 7;
+        // max diffusion sigma for diffusion convolution
+        float max_diff_sigma = 8;
+        float sigma_l2 = 9;
+    }
+    repeated ImageConfig image_config = 2;
+}

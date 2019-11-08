@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RDI Live Display</title>
+  <link rel="stylesheet" href="/webdata/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href=
+  "/webdata/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href=
+  "/webdata/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href=
+  "/webdata/favicon-16x16.png">
+  <link rel="manifest" href="/webdata/site.webmanifest">
+  <link rel="mask-icon" href="/webdata/safari-pinned-tab.svg"
+  color="#5bbad5">
+  <link rel="shortcut icon" href="/webdata/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content=
+  "/webdata/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div id="sidebar">
+    <img id="logo" src="/webdata/rdi.png">
+    <div id="nickname"></div>
+    <div id="managerlist"></div>
+  </div>
+  <div id="controlpanel" class="panel"></div>
+  <div id="showpanel" class="panel"></div><img id="connectionicon"
+  class="inactive" src="/webdata/wifi-icon.png">
+  <div id="cpuusage" class="meter">
+    <div id="cpuusagetext" class="metertext">
+      CPU Usage
+    </div>
+    <div id="cpuusagemeter" class="meterbar"></div>
+  </div>
+  <div id="memusage" class="meter">
+    <div id="memusagetext" class="metertext">
+      Mem Usage
+    </div>
+    <div id="memusagemeter" class="meterbar"></div>
+  </div>
+  <script src="/webdata/main.js"></script> 
+  <script src="/webdata/manager.js"></script> 
+  <script src="/webdata/show.js"></script> 
+  <script src="/webdata/stream.js"></script> 
+  <script src="/webdata/ws.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[Unit]
+Description=Current-mode DAQ Software
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=forking
+User=root
+Restart=always
+RestartSec=1
+Environment=GOGC=500
+Environment=HPS_UID=
+Environment=OUTPUT_URL=
+ExecStart=/usr/local/bin/rdi-cm-daq -d
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package rdi.slowdata;
+option go_package = "slowdata";
+
+message Temp {
+    // values in C
+    repeated float som = 1;
+    repeated float fem = 2;
+    repeated float board = 3;
+}
+
+message Hv {
+    repeated uint32 dac_value = 1;
+}

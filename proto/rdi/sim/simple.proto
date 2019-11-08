@@ -1,0 +1,38 @@
+syntax = "proto3";
+package rdi.sim;
+option go_package = "sim";
+
+message Particle {
+    repeated uint64 parent = 1;
+    repeated uint64 child = 2;
+    sint32 pdg = 3;
+    XYZTF vertex = 4;
+    XYZF p = 5;
+    float mass = 6;
+    sint32 charge = 7;
+}
+
+message SimHit {
+    uint64 volume_id = 1;
+    XYZTF global_pre_pos = 2;
+    XYZTF global_post_pos = 3;
+    float e_dep = 4;
+    uint64 particle = 5;
+
+    // Alternate fields
+    string volume_name = 6;
+    string particle_name = 7;
+}
+
+message XYZF {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message XYZTF {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+    float t = 4;
+}

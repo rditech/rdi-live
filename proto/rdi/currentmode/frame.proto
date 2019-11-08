@@ -1,0 +1,63 @@
+syntax = "proto3";
+package rdi.currentmode;
+option go_package = "currentmode";
+
+// Frame is a repeated sequence of samples.  Each sample may or may not be for
+// a complete set of detector channels.
+message Frame {
+    uint64 timestamp = 1;
+    repeated Sample sample = 2;
+    map<uint64, HpsSample> offsets = 3;
+    repeated AxisSample axis_offsets = 5;
+    // correlation coefficient between all axes
+    float correlation = 4;
+}
+
+// Sample is a set of values corresponding to a set of channels that were
+// sampled together.
+message Sample {
+    uint64 timestamp = 1;
+    // hps maps an HPS UID to a set of samples local to that HPS.  The 32 MSB
+    // of the UID is a type identifier that is shared among all HPSs with the
+    // same nominal configuration.  The 32 LSB of the UID is an identifier for
+    // a particular HPS installation.
+    map<uint64, HpsSample> hps = 2;
+
+    // axis is filled once mapping is applied and the hps field is emptied.
+    repeated AxisSample axis = 3;
+
+    message BeamInfo {
+        float mean_x_pos = 1;
+        float mean_y_pos = 2;
+        float total_current = 3;
+        float x_var = 4;
+        float y_var = 5;
+        float x_y_cov = 6;
+    }
+    BeamInfo beam_info = 4;
+}
+
+// HpsSample represents at least a portion of the detector read out by a single
+// HPS (Hard Processor System).
+message HpsSample {
+    // HPS-local channel samples
+    repeated sint32 channel = 1;
+    // sum of all channels
+    sint64 sum = 2;
+    // optional representations
+    repeated float float_channel = 3;
+    repeated sfixed32 fixed_channel = 4;
+    // sample number from FPGA
+    uint32 sample_number = 5;
+}
+
+// AxisSample represents a single detector axis for multi-dimensional,
+// strip-like readout.
+message AxisSample {
+    // axis-local channel samples
+    repeated sint32 channel = 1;
+    // optional float representation
+    repeated float float_channel = 2;
+    // sum of all channels
+    float sum = 3;
+}

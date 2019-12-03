@@ -14,7 +14,7 @@ DE-SC0015136.
 The tools include the main `rdi-live` binary.
 1. Install the Go compiler toolchain (version 1.11 or newer) from
    [https://golang.org/dl/](https://golang.org/dl).
-2. `go install` the tools directory recursively
+2. `go get` the tools directory recursively
 ```shell
-go install github.com/rditech/rdi-live/tools/...
+go get github.com/rditech/rdi-live/tools/...
 ```

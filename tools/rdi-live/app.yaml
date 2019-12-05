@@ -12,11 +12,4 @@ resources:
 
 env_variables:
     GOGC: "500"
-    AUTH0_CLIENT_ID: "AKtUIhFrwoEO3fBhFU14a0i957g1f3Xg"
-    AUTH0_DOMAIN: "rditech.auth0.com"
-    AUTH0_CLIENT_SECRET: "JOSIb83JnIvijs6b9UNY0EwKRDIqVZqJtcAeuFdD6SULMHtGgvS8x5f154jaw3Mn"
-    AUTH0_CALLBACK_URL: "https://live.radiationimaging.com/callback"
-    AUTH0_LOGOUT_URL: "https://live.radiationimaging.com"
-    SESSION_KEY: "kbTmIKuAjfMRSNiYJnBVWZEua763d3KthBf41ynDFRs="
-    SECURE_ONLY: "true"
     MAX_NPR: "100"

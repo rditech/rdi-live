@@ -9,6 +9,7 @@ This material is based upon work supported by the U.S. Department of Energy,
 Office of Science, Nuclear Physics program office under Award Number
 DE-SC0015136.
 ## Screenshots
+![Demo animation](images/software_demo.gif)
 ![RDI logo beam scan](images/screenshot1.png)
 ## Tools installation
 The tools include the main `rdi-live` binary.
